@@ -1,0 +1,163 @@
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title></title>
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&display=swap" rel="stylesheet">
+	</head>
+	<style>
+		body{
+			color: white
+			font-size:40px;
+			background-image: linear-gradient(to right top, #4c4c4c, #3e3e3e, #313131, #242424, #181818, #232323, #2e2e2e, #393939, #636363, #909090, #c0c0c0, #f2f2f2);
+			background-repeat: no-repeat;
+			height: 607px;
+		}
+		.left{
+			width: 40%;
+			float: left;
+			text-align: center;
+			background-color:transparent;
+			height: 400px;
+			color: red;
+			font-weight: bolder;
+			margin-top: 30px;
+			font-family: 'Cinzel', serif;
+			font-size: 25px;
+		}
+		.right{
+			width: 40%;
+			float:right;
+			background-image: url(predict.gif);
+			background-repeat: no-repeat;
+			background-color: transparent;
+			height: 500px;
+			padding-left: 10px;
+			margin-top: 80px;
+		}
+		input[type="text"] {
+			border-radius: 10px;
+			height: 40px;
+			width: auto;
+			font-size: 20px;
+			font-family: 'Heebo', sans-serif;
+			color: lime;
+			outline: none;
+			background-color: transparent;
+			opacity: 1;
+		}
+		input#name{
+			margin-bottom: 20px;
+		}
+		button{
+			border-radius: 15px;
+			padding: 5px;
+			text-decoration: none;
+			font-size: 25px;
+			font-family: 'Cherry Swash', cursive;
+			outline: none;
+			color: white;
+			text-align: center;
+			tab-size:2;
+			padding-right: 10px;
+			background: #1a1a1a;
+			border-style: dotted;
+			border-color: black;
+			border-width: 2px;
+		}
+		button:hover{
+			background-image: linear-gradient(to left bottom, #000000, #3b3b3b, #777777, #b9b9b9, #ffffff);
+			color: black;
+		}
+		.right{
+			animation: shake .5s;
+		}
+		@keyframes shake {
+			0% { transform: translate(4px, 4px) rotate(0deg); }
+			10% { transform: translate(-4px, -4px) rotate(-1deg); }
+			20% { transform: translate(-7px, 0px) rotate(1deg); }
+			30% { transform: translate(7px, 4px) rotate(0deg); }
+			40% { transform: translate(4px, -4px) rotate(1deg); }
+			50% { transform: translate(-4px, 4px) rotate(-1deg); }
+			60% { transform: translate(-7px, 4px) rotate(0deg); }
+			70% { transform: translate(7px, 4px) rotate(-1deg); }
+			80% { transform: translate(-4px, -4px) rotate(1deg); }
+			90% { transform: translate(4px, 4px) rotate(0deg); }
+			100% { transform: translate(4px, -4px) rotate(-1deg); }
+		}
+		p{
+			color: lime;
+		}
+		.no{
+			display: none;
+		}
+	</style>
+	<body>
+		<div class="main">	
+			<div class="right" id="img"></div>
+			<div class="left">
+				<fieldset>
+					<legend class="h">Welcome to the magic 8 ball </legend>
+					Enter Your Name:<br><input type="text" id="name" />
+					<button type="button" class="button" onclick="submit();show();">Enter</button>
+					<br>
+					<p id="greet"></p>
+					<p id="note"></p>
+					<div class="no" id="hide">
+					Enter Your Question:
+					<input type="text" id="select" required="" />
+					<button type="button" class="button" onclick="Questions();change()">Let's Predict..!</button>
+					<p id="answer"></p>
+					<button  class="button" onclick="reset()">Reset</button>
+				
+					<button type="button" class="button" onclick="quit()">Quit</button>
+					</div>
+				</fieldset>
+			</div>
+		</div>
+		<script>
+			function submit(){
+				var name=document.getElementById('name').value;
+
+				if(name==''){
+					document.getElementById('greet').innerHTML="Hello! Please Enter Your Name..! " 
+				}
+				else{
+					document.getElementById('greet').innerHTML="Hello! " + name;
+					document.getElementById('note').innerHTML="Welcome To The Magic 8 Ball,Select What You Wants To Know.....!"
+					
+					
+				}
+			}
+			function Questions(){
+				var select=document.getElementById('select').value;
+				document.getElementById("answer").innerHTML="Please "
+				var arr=['It is certain','It is decidedly so.','Without a doubt.','Yes – definitely.','You may rely on it.','As I see it, yes.','Most likely.','Outlook good.','Yes......!','Signs point to yes.','Reply hazy, try again.','Ask again later.','Better not tell you now.','Cannot predict now.','Concentrate and ask again.','My reply is no.','My sources say no.','Outlook not so good.','Very doubtful.']
+				document.getElementById("answer").innerHTML =arr[Math.floor(Math.random()*21)] 
+			}
+			function reset(){
+				var select=document.getElementById('select').value="";
+				document.getElementById("answer").innerHTML="";
+			}
+			function quit(){	
+				var name=document.getElementById('name').value="";
+				document.getElementById('greet').innerHTML="";
+				document.getElementById('note').innerHTML="";
+				var select=document.getElementById('select').value="";
+				document.getElementById("answer").innerHTML="";
+				document.getElementById('img').style.backgroundImage="url(predict.gif)";
+				var box=document.getElementById("hide");
+					box.style.display="none";
+			}
+			function change(){
+				document.getElementById('img').style.backgroundImage="url(h1.gif)";
+			}
+			
+			function show(){
+					var box=document.getElementById("hide");
+					box.style.display="block";
+				
+					}
+		</script>
+	</body>
+	</html>
